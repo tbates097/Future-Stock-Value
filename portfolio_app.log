@@ -286,3 +286,41 @@ Dash is running on http://0.0.0.0:8050/
 2025-01-26 21:07:38,773 - INFO - 127.0.0.1 - - [26/Jan/2025 21:07:38] "POST /_dash-update-component HTTP/1.1" 200 -
 2025-01-26 21:07:39,396 - INFO - 127.0.0.1 - - [26/Jan/2025 21:07:39] "POST /_dash-update-component HTTP/1.1" 200 -
 2025-01-26 21:07:39,572 - INFO - 127.0.0.1 - - [26/Jan/2025 21:07:39] "POST /_dash-update-component HTTP/1.1" 200 -
+2025-02-09 15:15:09,766 - INFO - Portfolio loaded from /Users/toddbates/Python/Future-Stock-Value/portfolio.json
+2025-02-09 15:15:09,767 - ERROR - Error updating price for QQQ: name 'get_stock_price' is not defined
+2025-02-09 15:15:09,767 - ERROR - Error updating price for SPY: name 'get_stock_price' is not defined
+2025-02-09 15:15:09,767 - ERROR - Error updating price for VOO: name 'get_stock_price' is not defined
+Dash is running on http://0.0.0.0:8050/
+
+2025-02-09 15:15:09,769 - INFO - Dash is running on http://0.0.0.0:8050/
+
+ * Serving Flask app 'app'
+ * Debug mode: off
+2025-02-09 15:15:09,804 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8050
+ * Running on http://192.168.1.170:8050
+2025-02-09 15:15:09,804 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 15:15:41,404 - INFO - Portfolio loaded from /Users/toddbates/Python/Future-Stock-Value/portfolio.json
+2025-02-09 15:15:42,313 - INFO - Updated prices for 3 stocks
+2025-02-09 15:15:42,314 - INFO - Portfolio saved to /Users/toddbates/Python/Future-Stock-Value/portfolio.json
+Dash is running on http://0.0.0.0:8050/
+
+2025-02-09 15:15:42,316 - INFO - Dash is running on http://0.0.0.0:8050/
+
+ * Serving Flask app 'app'
+ * Debug mode: off
+2025-02-09 15:15:42,343 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8050
+ * Running on http://192.168.1.170:8050
+2025-02-09 15:15:42,344 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 15:15:45,892 - INFO - 127.0.0.1 - - [09/Feb/2025 15:15:45] "GET / HTTP/1.1" 200 -
+2025-02-09 15:15:46,599 - INFO - 127.0.0.1 - - [09/Feb/2025 15:15:46] "GET /_dash-layout HTTP/1.1" 200 -
+2025-02-09 15:15:46,602 - INFO - 127.0.0.1 - - [09/Feb/2025 15:15:46] "GET /_dash-dependencies HTTP/1.1" 200 -
+2025-02-09 15:15:46,700 - INFO - 127.0.0.1 - - [09/Feb/2025 15:15:46] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+2025-02-09 15:15:46,729 - INFO - 127.0.0.1 - - [09/Feb/2025 15:15:46] "GET /_favicon.ico?v=2.14.1 HTTP/1.1" 200 -
+2025-02-09 15:15:46,770 - INFO - 127.0.0.1 - - [09/Feb/2025 15:15:46] "[36mGET /_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+2025-02-09 15:15:47,507 - INFO - 127.0.0.1 - - [09/Feb/2025 15:15:47] "POST /_dash-update-component HTTP/1.1" 200 -
+2025-02-09 15:15:47,546 - INFO - Portfolio saved to /Users/toddbates/Python/Future-Stock-Value/portfolio.json
+2025-02-09 15:15:49,417 - INFO - 127.0.0.1 - - [09/Feb/2025 15:15:49] "POST /_dash-update-component HTTP/1.1" 200 -

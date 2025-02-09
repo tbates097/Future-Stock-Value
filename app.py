@@ -35,6 +35,18 @@ dark_mode = True  # Default to dark mode
 # File to store portfolio data
 PORTFOLIO_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'portfolio.json')
 
+def get_stock_price(symbol):
+    """
+    Safely retrieve the current stock price
+    """
+    try:
+        stock = yf.Ticker(symbol)
+        current_price = stock.history(period='1d')['Close'].iloc[-1]
+        return round(current_price, 2)
+    except Exception as e:
+        logger.error(f"Error getting price for {symbol}: {str(e)}")
+        return None
+
 def save_portfolio():
     """Save portfolio data to JSON file"""
     try:
@@ -72,8 +84,9 @@ def update_stock_prices():
     for symbol in list(portfolio.keys()):
         try:
             current_price = get_stock_price(symbol)
-            portfolio[symbol]['price'] = current_price
-            updated_count += 1
+            if current_price is not None:
+                portfolio[symbol]['price'] = current_price
+                updated_count += 1
         except Exception as e:
             logger.error(f"Error updating price for {symbol}: {str(e)}")
     
@@ -561,55 +574,6 @@ def update_projection(n_clicks, years, dark_mode_enabled):
     except Exception as e:
         logger.error(f"Error updating graph: {str(e)}")
         return go.Figure()  # Return empty figure on error
-
-def get_stock_price(symbol):
-    """Safely retrieve the current stock price"""
-    try:
-        # Try different variations of the symbol for mutual funds
-        symbols_to_try = [
-            symbol,
-            symbol + '.MF',  # Mutual fund suffix
-            symbol + '.O',   # NASDAQ suffix
-            symbol + '.X'    # Some mutual fund suffix
-        ]
-        
-        for sym in symbols_to_try:
-            try:
-                stock = yf.Ticker(sym)
-                hist = stock.history(period="1d")
-                
-                if not hist.empty and 'Close' in hist.columns:
-                    latest_price = hist['Close'].iloc[-1] if len(hist) > 0 else None
-                    
-                    if latest_price is not None and not pd.isna(latest_price):
-                        logger.info(f"Successfully found price for {sym}")
-                        return latest_price
-            except:
-                continue
-        
-        # If we get here, none of the symbol variations worked
-        # Try to get the info to provide a better error message
-        stock = yf.Ticker(symbol)
-        info = stock.info
-        
-        if 'quoteType' in info:
-            quote_type = info['quoteType']
-            if quote_type == 'MUTUALFUND':
-                raise ValueError(f"'{symbol}' is a mutual fund that is not supported by Yahoo Finance. "
-                               "Try checking the fund company's website directly.")
-            else:
-                raise ValueError(f"No price data available for {symbol} (Type: {quote_type})")
-        else:
-            raise ValueError(f"Could not find {symbol}. Please verify the symbol is correct.")
-            
-    except Exception as e:
-        logger.error(f"Error fetching price for {symbol}: {str(e)}")
-        if "mutual fund" in str(e).lower():
-            raise ValueError(f"'{symbol}' appears to be a mutual fund. Currently, we only support stocks and ETFs. "
-                           "For mutual funds, please check your fund company's website directly.")
-        else:
-            raise ValueError(f"Could not get price for {symbol}. Please verify the symbol is correct. "
-                           "Note: We currently support stocks and ETFs only.")
 
 def calculate_historical_returns(symbol, lookback_years=5):
     """Calculate historical returns for a given stock"""
